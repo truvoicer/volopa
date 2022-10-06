@@ -1,0 +1,13 @@
+<VirtualHost *:80>
+        ServerAdmin webmaster@example.com
+            ServerName localhost
+
+		DirectoryIndex index.php
+        DocumentRoot /var/www/html/public/
+
+        <Directory /var/www/html/public/>
+            Options Indexes FollowSymLinks
+            AllowOverride All
+            Require all granted
+        </Directory>
+</VirtualHost>

@@ -1,0 +1,41 @@
+version: '3.8'
+services:
+  volopa-api:
+    container_name: volopa-api
+    build:
+      context: ../
+      dockerfile: ./docker/Dockerfile
+      args:
+        - NODE_VERSION=14.x
+    ports:
+      - "48080:80"
+      - "39443:443"
+    env_file:
+      - ../.env
+#    volumes:
+#      - ../:/var/www/html
+#      - ./supervisord.conf:/etc/supervisor/supervisord.conf
+    networks:
+        - volopa
+
+  volopa-db:
+      container_name: volopa-db
+      image: mysql:8.0.30
+      restart: always
+      ports:
+          - "43306:3306"
+      env_file:
+          - ../volopa-api/.env
+      volumes:
+          - ./mysql:/var/lib/mysql
+      networks:
+          - volopa
+
+volumes:
+  volopa-api:
+  volopa-db:
+
+networks:
+  volopa:
+    name: volopa
+    driver: bridge
