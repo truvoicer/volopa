@@ -64,13 +64,13 @@ RUN dos2unix ${supervisor_conf} ${supervisor_conf}
 # Copy start.sh script and define default command for the container
 COPY ./volopa-api/docker/start.sh /start.sh
 
-RUN dos2unix /wait-for-it.sh /wait-for-it.sh
+RUN dos2unix /start.sh /start.sh
 RUN chmod +x /start.sh
 
 # Copy start.sh script and define default command for the container
 COPY ./volopa-api/docker/wait-for-it.sh /wait-for-it.sh
 
-RUN dos2unix /start.sh /start.sh
+RUN dos2unix /wait-for-it.sh /wait-for-it.sh
 RUN chmod +x /wait-for-it.sh
 
 
